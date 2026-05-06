@@ -1,0 +1,19 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Thamaraimanalan M
+	email = thamaraimanalan@linumiz.com
+[core]
+	editor = vim
+
+[sendemail]
+	smtpserver = smtp.office365.com
+        smtpuser = thamaraimanalan@linumiz.com
+	smtpencryption = tls
+	smtpserverport = 587
+	smtppass = 
+
+[alias]
+  co = checkout
+  br = branch
+  st = status
+  l  = log
