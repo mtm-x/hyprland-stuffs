@@ -7,13 +7,13 @@ cursor                  #8B6F56
 cursor_text_color       #FFFFFF
 
 active_tab_foreground     #131311
-active_tab_background     #FFFFFF
-inactive_tab_foreground   #FFFFFF
+active_tab_background     #5E4533
+inactive_tab_foreground   #5E4533
 inactive_tab_background   #131311
 
 # black
 color0      #525229
-color8      #757575
+color8      #8F8F57
 
 # red
 color1      #FFE4CC

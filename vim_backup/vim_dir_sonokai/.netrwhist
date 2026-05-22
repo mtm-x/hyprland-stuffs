@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/mtm/Personal_projects/Debloater.bin/include'
+let g:netrw_dirhist_2='/home/mtm/intern_learning/c/derived_types/pointers'
+let g:netrw_dirhist_1='/home/mtm/test'

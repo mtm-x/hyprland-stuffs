@@ -1,0 +1,65 @@
+filetype plugin indent on
+syntax on
+set title
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set number
+set cursorline
+
+let NERDTreeShowHidden=1
+call plug#begin('~/.vim/plugged')
+
+" --- Theme & UI ---
+Plug 'sainnhe/gruvbox-material'    " Modern Gruvbox theme
+Plug 'itchyny/lightline.vim'       " Clean statusline
+Plug 'preservim/nerdtree'          " File tree sidebar (:NERDTree)
+Plug 'ctrlpvim/ctrlp.vim'          " Fuzzy file finder (Ctrl+P)
+Plug 'easymotion/vim-easymotion'   " Jump anywhere fast (<leader><leader>w)
+
+call plug#end()
+
+" --- Theme Configuration ---
+if has('termguicolors')
+  set termguicolors
+endif
+
+set background=dark
+let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_enable_italic = 1
+colorscheme gruvbox-material
+
+let g:lightline = {'colorscheme' : 'gruvbox_material'}
+
+" --- Keybindings ---
+" Toggle with Ctrl+n
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Open NERDTree automatically when vim starts with no file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Close vim if NERDTree is the only window left
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
+  \ exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Keep NERDTree in sync with current file
+nnoremap <C-f> :NERDTreeFind<CR>
+" ... (existing config above) ...
+
+" --- Transparency Fix ---
+function! AdaptToTerminal()
+    highlight Normal guibg=NONE ctermbg=NONE
+    highlight NonText guibg=NONE ctermbg=NONE
+    highlight EndOfBuffer guibg=NONE ctermbg=NONE
+    highlight LineNr guibg=NONE ctermbg=NONE
+    highlight SignColumn guibg=NONE ctermbg=NONE
+endfunction
+
+autocmd ColorScheme * call AdaptToTerminal()
+
+" Call it now in case the colorscheme is already loaded
+call AdaptToTerminal()

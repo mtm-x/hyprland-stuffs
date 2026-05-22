@@ -42,12 +42,13 @@ decoration {
     }
     blur {
         enabled = yes
-        size = 6
-        passes = 3
+        size = 2
+        passes = 7
         new_optimizations = on
         ignore_opacity = on
         xray = false
+        brightness = 0.9
     }
 }
 
-layerrule = unset,waybar
+layerrule = blur on, match:namespace waybar
