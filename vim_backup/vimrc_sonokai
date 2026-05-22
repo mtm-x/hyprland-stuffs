@@ -1,10 +1,12 @@
 filetype plugin indent on
 syntax on
 set title
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
+set noexpandtab
+set autoindent
+set smartindent
 set number
 set cursorline
 
@@ -41,6 +43,10 @@ function! AdaptToTerminal()
     highlight EndOfBuffer guibg=NONE ctermbg=NONE
     highlight LineNr guibg=NONE ctermbg=NONE
     highlight SignColumn guibg=NONE ctermbg=NONE
+    highlight MatchParen guifg=#FFFFFF guibg=#FF5F00 gui=bold
+    highlight Terminal guibg=NONE ctermbg=NONE
+    highlight StatusLine guibg=NONE ctermbg=NONE
+    highlight StatusLineNC guibg=NONE ctermbg=NONE
 endfunction
 
 autocmd ColorScheme * call AdaptToTerminal()
@@ -52,3 +58,6 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 nnoremap <C-f> :NERDTreeFind<CR>
+
+" --- Linux Kernel C Style ---
+autocmd FileType c,cpp setlocal cindent cinoptions=:0,l1,t0,g0,(0
