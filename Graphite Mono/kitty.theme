@@ -16,29 +16,29 @@ color0      #525229
 color8      #757575
 
 # red
-color1      #FFE4CC
-color9      #F0CBAA
+color1      #ff6578
+color9      #ff6578
 
 # green
-color2      #FFE1CC
-color10     #F0C7AA
+color2      #9dd274
+color10     #9dd274
 
 # yellow
-color3      #FFE1CC
-color11     #F0C7AA
+color3      #eacb64
+color11     #eacb64
 
 # blue
-color4      #E6E69A
-color12     #E6E69A
+color4      #72cce8
+color12     #72cce8
 
 # magenta
-color5      #E6B99A
-color13     #E6B99A
+color5      #ba9cf3
+color13     #ba9cf3
 
 # cyan
-color6      #E6B99A
-color14     #E6B99A
+color6      #f69c5e
+color14     #f69c5e
 
 # white
-color7      #FFE4CC
-color15     #F0CBAA
+color7      #e1e3e4
+color15     #ffffff
