@@ -12,8 +12,8 @@ inactive_tab_foreground   #FFFFFF
 inactive_tab_background   #131311
 
 # black
-color0      #525229
-color8      #757575
+color0      #181a1c
+color8      #828a9a
 
 # red
 color1      #ff6578
