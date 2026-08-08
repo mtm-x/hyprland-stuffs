@@ -61,3 +61,36 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 " --- Linux Kernel C Style ---
 autocmd FileType c,cpp setlocal cindent cinoptions=:0,l1,t0,g0,(0
+
+
+" ---- ctags ----
+set tags=./tags;,tags;
+" ./tags;   -> look for a 'tags' file starting in the current file's dir, walking up
+" tags;     -> also search upward from vim's cwd
+" the trailing ';' means "keep going up until found or hit root"
+
+" ---- cscope ----
+if has('cscope')
+  set csprg=/usr/bin/cscope
+  set csto=1        " prefer ctags over cscope for tag-name matches, cscope as fallback
+  set cst            " use cscope for :tag / ctrl-]
+  set nocsverb
+
+  if filereadable("cscope.out")
+    cs add cscope.out
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+  endif
+
+  set csverb
+endif
+
+" ---- optional: familiar cscope keymaps (ctrl-\ + letter) ----
+nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>f :cs find f <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>i :cs find i <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
