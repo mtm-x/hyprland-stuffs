@@ -1,4 +1,4 @@
 [[mgr.prepend_keymap]]
-on = ["w"]
-run = "shell --block '/home/mtm/.config/personal_scripts/setwall.sh \"%h\" && exit'"
-desc = "Set as wallpaper and quit"
+on   = ["w"]
+run  = 'shell --block --confirm "/home/mtm/.local/bin/setwall.sh \"$1\""'
+desc = "Set as wallpaper"
