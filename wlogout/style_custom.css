@@ -1,0 +1,99 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Symbols Nerd Font", sans-serif;
+    font-size: 22px;
+    color: #d8dee9;
+}
+
+window {
+    background-color: rgba(9, 11, 15, 0.86);
+}
+
+button {
+    background-color: rgba(27, 31, 39, 0.82);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24%;
+    border: 1px solid rgba(216, 222, 233, 0.14);
+    border-radius: 10px;
+    margin: 8px;
+    padding: 0;
+    min-width: 82px;
+    min-height: 82px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
+}
+
+button label {
+    color: transparent;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: rgba(216, 222, 233, 0.13);
+    border-color: rgba(216, 222, 233, 0.6);
+    background-size: 0%;
+}
+
+button:focus {
+    background-color: rgba(216, 222, 233, 0.2);
+    border-color: #d8dee9;
+    background-size: 0%;
+    outline: none;
+}
+
+#lock {
+    background-image: image(url("/home/mtm/.config/wlogout/icons/lock_white.png"));
+}
+
+#logout {
+    background-image: image(url("/home/mtm/.config/wlogout/icons/logout_white.png"));
+}
+
+#suspend {
+    background-image: image(url("/home/mtm/.config/wlogout/icons/suspend_white.png"));
+}
+
+#hibernate {
+    background-image: image(url("/home/mtm/.config/wlogout/icons/hibernate_white.png"));
+}
+
+#shutdown {
+    background-image: image(url("/home/mtm/.config/wlogout/icons/shutdown_white.png"));
+}
+
+#reboot {
+    background-image: image(url("/home/mtm/.config/wlogout/icons/reboot_white.png"));
+}
+
+button:hover label, button:focus label {
+    color: inherit;
+}
+
+#lock:hover, #lock:focus {
+    border-color: #f2cc8f;
+    color: #f2cc8f;
+}
+
+#logout:hover, #logout:focus {
+    border-color: #ef9a9a;
+    color: #ef9a9a;
+}
+
+#suspend:hover, #suspend:focus {
+    border-color: #9ccfd8;
+    color: #9ccfd8;
+}
+
+#hibernate:hover, #hibernate:focus {
+    border-color: #b7d7a8;
+    color: #b7d7a8;
+}
+
+#shutdown:hover, #shutdown:focus {
+    border-color: #f28f8f;
+    color: #f28f8f;
+}
+
+#reboot:hover, #reboot:focus {
+    border-color: #a8c7fa;
+    color: #a8c7fa;
+}
