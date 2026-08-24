@@ -1,0 +1,22 @@
+#!/bin/sh
+
+profile="${1:-}"
+profile_dir="$HOME/.config/hypr/profiles"
+
+case "$profile" in
+    normal|coding)
+        profile_file="$profile_dir/$profile.conf"
+        ;;
+    *)
+        printf 'Usage: %s {normal|coding}\n' "$0" >&2
+        exit 2
+        ;;
+esac
+
+if ! command -v hyprctl >/dev/null 2>&1; then
+    printf 'hyprctl was not found\n' >&2
+    exit 1
+fi
+
+hyprctl keyword source "$profile_file" >/dev/null
+printf 'Hyprland profile: %s\n' "$profile"

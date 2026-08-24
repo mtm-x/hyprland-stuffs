@@ -49,12 +49,51 @@ alias lx="cd ~/Linux/linux_mainline/"
 
 # Zephyr exports
 export ZEPHYR_SDK_INSTALL_DIR=/opt/sdk/zephyr-sdk-1.0.0
-alias zep="cd ~/zep/zephyr/ && source ~/zep/.venv/bin/activate"
-alias rf="rm -rf build/"
-alias wb="west build -p -b nucleo_f411re"
-alias wf="west flash --runner openocd"
+zep() {
+	cd "$HOME/zep/zephyr" || return 1
+	source "$HOME/zep/.venv/bin/activate"
+}
+
+zbuild() {
+	local board="${1:-${ZEPHYR_BOARD:-nucleo_f411re}}"
+	local build_dir="${2:-build}"
+	shift $(( $# > 0 ? 1 : 0 ))
+	shift $(( $# > 0 ? 1 : 0 ))
+	west build -p auto -b "$board" -d "$build_dir" "$@"
+}
+
+zflash() {
+	west flash --runner "${ZEPHYR_RUNNER:-openocd}" "$@"
+}
+
+ztest() {
+	west twister -T . "$@"
+}
+
+kbuild() {
+	local output_dir="${KBUILD_OUTPUT:-$HOME/.cache/kernel-build}"
+	make O="$output_dir" LLVM=1 -j"$(nproc)" "$@"
+}
+
+kmenu() {
+	local output_dir="${KBUILD_OUTPUT:-$HOME/.cache/kernel-build}"
+	make O="$output_dir" LLVM=1 menuconfig
+}
+
+rf() {
+	[[ -f build/CMakeCache.txt ]] || {
+		print "Refusing: build/CMakeCache.txt was not found"
+		return 1
+	}
+	rm -rf -- build
+}
+
+alias wb='zbuild'
+alias wf='zflash'
 
 # Dual monitor walls
 alias dualwall="~/.config/personal_scripts/dual_wall.sh --source"
 alias dualwallapp="~/.config/personal_scripts/dual_wall.sh --apply-only"
 alias TAS_DIR="/home/mtm/aurix/das/TAS_V1_1_0/bin/"
+alias hg='kitty +kitten hyperlinked_grep'
+alias hp='~/.config/personal_scripts/hypr-profile'
