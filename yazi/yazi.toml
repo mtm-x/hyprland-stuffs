@@ -1,0 +1,15 @@
+[opener]
+vim = [
+  { run = 'vim "$@"', block = true, desc = "Vim" },
+]
+
+[open]
+prepend_rules = [
+  { url = "*.cmake", use = "vim" },
+  { url = "*.yml",   use = "vim" },
+  { url = "*.yaml",  use = "vim" },
+  { url = "*.cfg",   use = "vim" },
+  { url = "*.dts",   use = "vim" },
+  { url = "*.dtsi",  use = "vim" },
+]
+
