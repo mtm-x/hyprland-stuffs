@@ -1,41 +1,40 @@
 #!/bin/bash
+set -euo pipefail
 
-# --- Paths ---
-SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
-VIM_BACKUP="$SCRIPT_DIR/vim_backup"
-FF_BACKUP="$SCRIPT_DIR/fastfetch_backup"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
-echo "--- Starting Theme Restoration ---"
+restore_tree() {
+    local source_dir="$1"
+    local target_dir="$2"
 
-# 1. Restore Vim Configuration
-echo "[1/2] Restoring Vim configuration..."
-if [ -d "$VIM_BACKUP" ]; then
+    [ -d "$source_dir" ] || return 0
+    mkdir -p "$target_dir"
+    cp -a "$source_dir/." "$target_dir/"
+}
+
+echo "--- Starting Configuration Restoration ---"
+
+restore_tree "$SCRIPT_DIR/hypr_configs" "$HOME/.config/hypr"
+restore_tree "$SCRIPT_DIR/kitty" "$HOME/.config/kitty"
+restore_tree "$SCRIPT_DIR/zsh" "$HOME/.config/zsh"
+
+if [ -f "$SCRIPT_DIR/vim_backup/vimrc_sonokai" ]; then
     mkdir -p "$HOME/.vim_old_backup"
-    [ -f "$HOME/.vimrc" ] && cp "$HOME/.vimrc" "$HOME/.vim_old_backup/vimrc.bak"
-    [ -d "$HOME/.vim" ] && cp -r "$HOME/.vim" "$HOME/.vim_old_backup/vim_dir.bak"
-
-    cp "$VIM_BACKUP/vimrc_sonokai" "$HOME/.vimrc"
-    mkdir -p "$HOME/.vim"
-    cp -r "$VIM_BACKUP/vim_dir_sonokai"/* "$HOME/.vim/"
-
-    # Ensure vim-plug and install plugins
-    if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
-        curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    fi
-    vim +PlugInstall +qall
-else
-    echo "Skipping Vim: Backup not found."
+    [ -f "$HOME/.vimrc" ] && cp -a "$HOME/.vimrc" "$HOME/.vim_old_backup/vimrc.bak"
+    [ -d "$HOME/.vim" ] && cp -a "$HOME/.vim" "$HOME/.vim_old_backup/vim_dir.bak"
+    cp -a "$SCRIPT_DIR/vim_backup/vimrc_sonokai" "$HOME/.vimrc"
+    restore_tree "$SCRIPT_DIR/vim_backup/vim_dir_sonokai" "$HOME/.vim"
 fi
 
-# 2. Restore Fastfetch Configuration
-echo "[2/2] Restoring Fastfetch configuration..."
-if [ -d "$FF_BACKUP" ]; then
+if [ -f "$SCRIPT_DIR/fastfetch_backup/config.jsonc" ]; then
     mkdir -p "$HOME/.config/fastfetch"
-    cp "$FF_BACKUP/config.jsonc" "$HOME/.config/fastfetch/"
-    cp -r "$FF_BACKUP/logo" "$HOME/.config/fastfetch/"
-else
-    echo "Skipping Fastfetch: Backup not found."
+    cp -a "$SCRIPT_DIR/fastfetch_backup/config.jsonc" "$HOME/.config/fastfetch/"
+    restore_tree "$SCRIPT_DIR/fastfetch_backup/logo" "$HOME/.config/fastfetch/logo"
 fi
 
-echo "--- Restoration Complete! ---"
+if [ -f "$SCRIPT_DIR/fastfetch_backup/starship.toml" ]; then
+    mkdir -p "$HOME/.config/starship"
+    cp -a "$SCRIPT_DIR/fastfetch_backup/starship.toml" "$HOME/.config/starship/starship.toml"
+fi
+
+echo "--- Configuration Restoration Complete! ---"
