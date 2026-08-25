@@ -1,10 +1,22 @@
 [opener]
+edit = [
+  { run = 'vim -- %s1', block = true, desc = "Edit" },
+]
+
+open = [
+  { run = 'xdg-open %s1', orphan = true, desc = "Open" },
+]
+
 vim = [
-  { run = 'vim "$@"', block = true, desc = "Vim" },
+  { run = 'vim -- %s1', block = true, desc = "Vim" },
 ]
 
 [open]
 prepend_rules = [
+  { mime = "inode/directory", use = "vim" },
+  { mime = "text/*", use = "vim" },
+  { mime = "application/json", use = "vim" },
+  { mime = "application/toml", use = "vim" },
   { url = "*.cmake", use = "vim" },
   { url = "*.yml",   use = "vim" },
   { url = "*.yaml",  use = "vim" },
