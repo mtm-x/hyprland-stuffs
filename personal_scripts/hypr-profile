@@ -19,4 +19,20 @@ if ! command -v hyprctl >/dev/null 2>&1; then
 fi
 
 hyprctl keyword source "$profile_file" >/dev/null
-printf 'Hyprland profile: %s\n' "$profile"
+
+case "$profile" in
+    normal) kitty_opacity=0.80 ;;
+    coding) kitty_opacity=1.00 ;;
+esac
+
+hyprctl clients -j | jq -r '.[] | select(.class == "kitty") | .address' |
+    while IFS= read -r address; do
+        [ -n "$address" ] && hyprctl setprop address:"$address" opacity "$kitty_opacity" lock >/dev/null
+    done
+
+case "$profile" in
+    normal) notify_color="rgb(89b4fa)" ;;
+    coding) notify_color="rgb(a6e3a1)" ;;
+esac
+
+hyprctl notify 5 2000 "$notify_color" "  $profile" >/dev/null
