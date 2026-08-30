@@ -67,12 +67,12 @@ if [ -f "$SCRIPT_DIR/vim_backup/vimrc_sonokai" ]; then
     restore_tree "$SCRIPT_DIR/vim_backup/vim_dir_sonokai" "$HOME/.vim" "Vim plugins and config"
 fi
 
-# 5. Fastfetch & Starship
-if [ -f "$SCRIPT_DIR/fastfetch_backup/config.jsonc" ]; then
-    mkdir -p "$HOME/.config/fastfetch"
-    cp -a "$SCRIPT_DIR/fastfetch_backup/config.jsonc" "$HOME/.config/fastfetch/"
-    restore_tree "$SCRIPT_DIR/fastfetch_backup/logo" "$HOME/.config/fastfetch/logo" "Fastfetch config & logos"
-fi
+# 5. Fastfetch (commented out) & Starship
+# if [ -f "$SCRIPT_DIR/fastfetch_backup/config.jsonc" ]; then
+#     mkdir -p "$HOME/.config/fastfetch"
+#     cp -a "$SCRIPT_DIR/fastfetch_backup/config.jsonc" "$HOME/.config/fastfetch/"
+#     restore_tree "$SCRIPT_DIR/fastfetch_backup/logo" "$HOME/.config/fastfetch/logo" "Fastfetch config & logos"
+# fi
 
 if [ -f "$SCRIPT_DIR/fastfetch_backup/starship.toml" ]; then
     mkdir -p "$HOME/.config/starship"
