@@ -1,4 +1,4 @@
 [[mgr.prepend_keymap]]
 on   = ["w"]
-run  = 'shell --block --confirm "/home/mtm/.local/bin/setwall.sh \"$1\""'
+run  = 'shell -- /home/mtm/.local/bin/setwall.sh %h'
 desc = "Set as wallpaper"
