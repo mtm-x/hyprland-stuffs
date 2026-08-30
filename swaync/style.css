@@ -1,0 +1,193 @@
+/* ========================================================= */
+/* GRAPHITE MONO SWAYNC - PURE NOTIFICATION CENTER          */
+/* ========================================================= */
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+
+/* ========================================================= */
+/* NOTIFICATION POPUP TOASTS (Top-Right Floating)            */
+/* ========================================================= */
+
+.notification-row {
+  outline: none;
+  margin: 6px 12px;
+}
+
+.notification {
+  background: #1a1a1a;
+  border: 1px solid #383838;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #d9d9d9;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.notification:hover {
+  background: #242424;
+  border-color: #555555;
+}
+
+.notification-default-action {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+}
+
+.notification-content {
+  padding: 0;
+  margin: 0;
+}
+
+.summary {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.body {
+  font-size: 12px;
+  color: #a6a6a6;
+  margin-top: 4px;
+}
+
+.time {
+  font-size: 10px;
+  color: #666666;
+  margin-right: 6px;
+}
+
+.app-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8c8c8c;
+}
+
+.close-button {
+  background: rgba(255, 255, 255, 0.06);
+  color: #a6a6a6;
+  border-radius: 100%;
+  border: 1px solid #383838;
+  padding: 4px;
+  margin: 4px;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.close-button:hover {
+  background: #d9d9d9;
+  color: #1a1a1a;
+  border-color: #d9d9d9;
+}
+
+.image {
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.body-image {
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+/* Urgency styles */
+.low {
+  border-color: #2e2e2e;
+}
+
+.normal {
+  border-color: #383838;
+}
+
+.critical {
+  border-color: #ff6578;
+  background: #201416;
+}
+
+/* Action Buttons inside notification */
+.notification-action {
+  border-radius: 6px;
+  background: #242424;
+  border: 1px solid #383838;
+  color: #d9d9d9;
+  padding: 6px 12px;
+  margin: 4px;
+}
+
+.notification-action:hover {
+  background: #333333;
+  border-color: #666666;
+  color: #ffffff;
+}
+
+/* ========================================================= */
+/* NOTIFICATION PANEL (Slide-out: Super+N)                   */
+/* ========================================================= */
+
+.control-center {
+  background: #181818;
+  border: 1px solid #383838;
+  border-radius: 12px;
+  padding: 16px;
+  color: #d9d9d9;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.7);
+}
+
+/* Title & Header */
+.widget-title {
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+.widget-title > label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.widget-title > button {
+  background: #242424;
+  border: 1px solid #383838;
+  border-radius: 6px;
+  padding: 4px 10px;
+  color: #a6a6a6;
+  font-size: 11px;
+}
+
+.widget-title > button:hover {
+  background: #333333;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+/* DND (Do Not Disturb) Widget */
+.widget-dnd {
+  background: #222222;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+
+.widget-dnd > label {
+  font-weight: 600;
+  color: #d9d9d9;
+}
+
+.widget-dnd > switch {
+  border-radius: 12px;
+  background: #2e2e2e;
+  border: 1px solid #444444;
+}
+
+.widget-dnd > switch:checked {
+  background: #d9d9d9;
+  border-color: #ffffff;
+}
