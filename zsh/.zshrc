@@ -46,12 +46,24 @@ alias tv="~/.config/personal_scripts/monitor.sh --tv"
 alias d1="docker exec -it training-test /bin/bash"
 alias cscope='EDITOR=vim cscope'
 alias lx="cd ~/Linux/linux_mainline/"
+alias linux='cd "$HOME/Linux/linux_mainline"'
+alias projects='cd "$HOME/Personal_projects"'
+alias config='cd "$HOME/.config"'
 
 # Zephyr exports
 export ZEPHYR_SDK_INSTALL_DIR=/opt/sdk/zephyr-sdk-1.0.0
 zep() {
 	cd "$HOME/zep/zephyr" || return 1
 	source "$HOME/zep/.venv/bin/activate"
+}
+
+aur() {
+	cd "$HOME/zep/zephyr-aurix" || return 1
+	source "$HOME/zep/.venv/bin/activate"
+	export PATH=/home/mtm/zep/aurix/deps/tricore-gcc/:$PATH && \
+	export ZEPHYR_TOOLCHAIN_VARIANT=cross-compile && \
+	export CROSS_COMPILE=/home/mtm/zep/aurix/deps/tricore-gcc/bin/tricore-elf- && \
+	echo "TriCore Setup: GCC MODE Active"
 }
 
 zbuild() {
