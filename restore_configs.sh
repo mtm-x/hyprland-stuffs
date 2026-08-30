@@ -16,14 +16,14 @@ restore_tree() {
 
 echo "--- Starting Configuration Restoration ---"
 
-# Hyprland, Waybar, SwayNC & Clipse
+# Hyprland, Waybar, SwayNC, Clipse & Rofi
 restore_tree "$SCRIPT_DIR/hypr_configs" "$HOME/.config/hypr"
 restore_tree "$SCRIPT_DIR/waybar" "$HOME/.config/waybar"
 restore_tree "$SCRIPT_DIR/swaync" "$HOME/.config/swaync"
 restore_tree "$SCRIPT_DIR/clipse" "$HOME/.config/clipse"
 restore_tree "$SCRIPT_DIR/rofi" "$HOME/.config/rofi"
 
-# System Monitors & Terminal
+# Terminal & Shell
 restore_tree "$SCRIPT_DIR/kitty" "$HOME/.config/kitty"
 restore_tree "$SCRIPT_DIR/zsh" "$HOME/.config/zsh"
 restore_tree "$SCRIPT_DIR/personal_scripts" "$HOME/.config/personal_scripts"
@@ -33,6 +33,7 @@ chmod 444 "$HOME/.config/waybar/config.jsonc" "$HOME/.config/waybar/style.css" 2
 
 # Vim
 if [ -f "$SCRIPT_DIR/vim_backup/vimrc_sonokai" ]; then
+    rm -rf "$HOME/.vim_old_backup" 2>/dev/null || true
     mkdir -p "$HOME/.vim_old_backup"
     [ -f "$HOME/.vimrc" ] && cp -a "$HOME/.vimrc" "$HOME/.vim_old_backup/vimrc.bak"
     [ -d "$HOME/.vim" ] && cp -a "$HOME/.vim" "$HOME/.vim_old_backup/vim_dir.bak"
@@ -52,14 +53,19 @@ if [ -f "$SCRIPT_DIR/fastfetch_backup/starship.toml" ]; then
     cp -a "$SCRIPT_DIR/fastfetch_backup/starship.toml" "$HOME/.config/starship/starship.toml"
 fi
 
-# Restart services if active
-pkill -9 -f waybar.py 2>/dev/null || true
-pkill -9 -f hyde-config 2>/dev/null || true
-killall dunst 2>/dev/null || true
-killall waybar 2>/dev/null || true
-killall swaync 2>/dev/null || true
-sleep 0.5
-nohup waybar -c "$HOME/.config/waybar/config.jsonc" -s "$HOME/.config/waybar/style.css" >/dev/null 2>&1 & disown || true
+# Restart services cleanly (prevents duplicate waybar instances)
+killall -9 dunst 2>/dev/null || true
+
+if systemctl --user is-active hyde-Hyprland-bar.service &>/dev/null; then
+    systemctl --user restart hyde-Hyprland-bar.service
+else
+    killall -9 waybar 2>/dev/null || true
+    sleep 0.3
+    nohup waybar >/dev/null 2>&1 & disown || true
+fi
+
+killall -9 swaync 2>/dev/null || true
+sleep 0.3
 nohup swaync >/dev/null 2>&1 & disown || true
 
 echo "--- Configuration Restoration Complete! ---"
