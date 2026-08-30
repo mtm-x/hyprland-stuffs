@@ -1,0 +1,155 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CaskaydiaCove Nerd Font", "FiraCode Nerd Font", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* Floating main container styling */
+.modules-left,
+.modules-center,
+.modules-right {
+    background: rgba(26, 26, 26, 0.92);
+    border: 1px solid rgba(64, 64, 64, 0.8);
+    padding: 2px 8px;
+    color: #d9d9d9;
+}
+
+/* Left - Taskbar & Media Player */
+#taskbar {
+    padding: 0;
+    margin: 0;
+}
+
+#taskbar button {
+    padding: 2px 6px;
+    margin: 2px 2px;
+    color: #8c8c8c;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+#taskbar button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+#taskbar button.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+#taskbar button.maximized,
+#taskbar button.fullscreen {
+    color: #ffffff;
+}
+
+#mpris {
+    padding: 2px 8px;
+    margin-left: 6px;
+    color: #b8b8b8;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(64, 64, 64, 0.4);
+    transition: all 0.2s ease-in-out;
+}
+
+#mpris:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+}
+
+#mpris.playing {
+    color: #ffffff;
+    border-color: rgba(217, 217, 217, 0.5);
+}
+
+#mpris.paused {
+    color: #737373;
+}
+
+/* Center - Idle Inhibitor & Clock */
+#idle_inhibitor {
+    padding: 2px 8px;
+    margin-right: 2px;
+    color: #8c8c8c;
+    transition: all 0.2s ease-in-out;
+}
+
+#idle_inhibitor:hover {
+    color: #ffffff;
+}
+
+#idle_inhibitor.activated {
+    color: #a6e3a1;
+}
+
+#clock {
+    padding: 2px 6px;
+    font-weight: 600;
+    color: #e6e6e6;
+    letter-spacing: 0.5px;
+}
+
+/* Right - Battery & Tray */
+#battery {
+    padding: 2px 8px;
+    margin: 2px 0;
+    color: #d9d9d9;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    color: #fab387;
+}
+
+#battery.critical:not(.charging) {
+    color: #f38ba8;
+    animation-name: blink;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#tray {
+    padding: 2px 6px;
+    margin-left: 4px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+@keyframes blink {
+    to {
+        background-color: #f38ba8;
+        color: #1e1e1e;
+    }
+}
+
+/* Tooltip styling */
+tooltip {
+    background: #1e1e1e;
+    border: 1px solid #404040;
+    color: #d9d9d9;
+    padding: 6px 10px;
+}
+
+tooltip label {
+    color: #d9d9d9;
+}
