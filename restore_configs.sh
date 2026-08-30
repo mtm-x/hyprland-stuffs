@@ -16,10 +16,11 @@ restore_tree() {
 
 echo "--- Starting Configuration Restoration ---"
 
-# Hyprland, Waybar & SwayNC
+# Hyprland, Waybar, SwayNC & Clipse
 restore_tree "$SCRIPT_DIR/hypr_configs" "$HOME/.config/hypr"
 restore_tree "$SCRIPT_DIR/waybar" "$HOME/.config/waybar"
 restore_tree "$SCRIPT_DIR/swaync" "$HOME/.config/swaync"
+restore_tree "$SCRIPT_DIR/clipse" "$HOME/.config/clipse"
 
 # Terminal & Shell
 restore_tree "$SCRIPT_DIR/kitty" "$HOME/.config/kitty"
