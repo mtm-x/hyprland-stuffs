@@ -46,7 +46,7 @@ restore_tree "$SCRIPT_DIR/hypr_configs" "$HOME/.config/hypr" "Hyprland configs (
 restore_tree "$SCRIPT_DIR/waybar" "$HOME/.config/waybar" "Waybar floating top bar"
 restore_tree "$SCRIPT_DIR/swaync" "$HOME/.config/swaync" "SwayNC notification center"
 restore_tree "$SCRIPT_DIR/clipse" "$HOME/.config/clipse" "Clipse clipboard manager"
-restore_tree "$SCRIPT_DIR/rofi" "$HOME/.config/rofi" "Rofi application launcher"
+restore_tree "$SCRIPT_DIR/rofi" "$HOME/.config/rofi"
 
 # 2. Terminal, Shell & Scripts
 restore_tree "$SCRIPT_DIR/kitty" "$HOME/.config/kitty" "Kitty terminal configuration"
@@ -84,6 +84,8 @@ fi
 echo ""
 log_info "Restarting desktop services..."
 
+systemctl --user stop hyde-Hyprland-notifications.service 2>/dev/null || true
+systemctl --user mask hyde-Hyprland-notifications.service 2>/dev/null || true
 killall -9 dunst 2>/dev/null || true
 
 if systemctl --user is-active hyde-Hyprland-bar.service &>/dev/null; then
