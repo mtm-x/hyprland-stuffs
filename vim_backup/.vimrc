@@ -8,10 +8,23 @@ set noexpandtab
 set autoindent
 set smartindent
 set number
-set cursorline
+set scrolloff=8
+set sidescrolloff=8
+set incsearch
+set ignorecase
+set smartcase
+set hidden
+set splitright
+set splitbelow
+set undofile
+set undodir=~/.vim/undo//
+set wildmenu
+set completeopt=menuone,noinsert,noselect
 
 let NERDTreeShowHidden=1
 call plug#begin('~/.vim/plugged')
+" --- Maximizer ---
+Plug 'szw/vim-maximizer'
 
 " --- Theme & UI ---
 Plug 'sainnhe/sonokai'             " High-contrast, vibrant theme
@@ -61,6 +74,28 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 " --- Linux Kernel C Style ---
 autocmd FileType c,cpp setlocal cindent cinoptions=:0,l1,t0,g0,(0
+autocmd FileType c,cpp,h setlocal tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
+autocmd BufNewFile,BufRead *.dts,*.dtsi,*.overlay,*.keymap setfiletype dts
+autocmd BufNewFile,BufRead Kconfig,Kconfig.* setfiletype kconfig
+
+" ---- quickfix and project workflow ----
+nnoremap <leader>w :update<CR>
+nnoremap <leader>q :copen<CR>
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>p :cprevious<CR>
+nnoremap <leader>x :cclose<CR>
+nnoremap <leader>h :nohlsearch<CR>
+nnoremap <leader>b :make<CR>
+nnoremap <leader>r :execute 'make -j' . trim(system('nproc'))<CR>
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case
+  set grepformat=%f:%l:%c:%m
+endif
+
+if !isdirectory(expand('~/.vim/undo'))
+  call mkdir(expand('~/.vim/undo'), 'p')
+endif
 
 
 " ---- ctags ----
@@ -94,3 +129,5 @@ nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>f :cs find f <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>i :cs find i <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+let g:ctrlp_map = '<leader>f'
