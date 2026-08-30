@@ -1,0 +1,15 @@
+configuration {
+    font:               "JetBrainsMono Nerd Font 12";
+    show-icons:         true;
+    icon-theme:         "Tela-circle-grey";
+    display-drun:       " Apps";
+    display-window:     " Windows";
+    display-filebrowser:" Files";
+    drun-display-format:"{name}";
+    terminal:           "kitty";
+    hover-select:       true;
+    me-select-entry:    "";
+    me-accept-entry:    "MousePrimary";
+}
+
+@theme "graphite-mono"

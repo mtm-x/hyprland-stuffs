@@ -21,8 +21,9 @@ restore_tree "$SCRIPT_DIR/hypr_configs" "$HOME/.config/hypr"
 restore_tree "$SCRIPT_DIR/waybar" "$HOME/.config/waybar"
 restore_tree "$SCRIPT_DIR/swaync" "$HOME/.config/swaync"
 restore_tree "$SCRIPT_DIR/clipse" "$HOME/.config/clipse"
+restore_tree "$SCRIPT_DIR/rofi" "$HOME/.config/rofi"
 
-# Terminal & Shell
+# System Monitors & Terminal
 restore_tree "$SCRIPT_DIR/kitty" "$HOME/.config/kitty"
 restore_tree "$SCRIPT_DIR/zsh" "$HOME/.config/zsh"
 restore_tree "$SCRIPT_DIR/personal_scripts" "$HOME/.config/personal_scripts"
@@ -53,6 +54,7 @@ fi
 
 # Restart services if active
 pkill -9 -f waybar.py 2>/dev/null || true
+pkill -9 -f hyde-config 2>/dev/null || true
 killall dunst 2>/dev/null || true
 killall waybar 2>/dev/null || true
 killall swaync 2>/dev/null || true

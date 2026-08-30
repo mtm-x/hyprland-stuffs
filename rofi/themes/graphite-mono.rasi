@@ -1,0 +1,128 @@
+/* ========================================================= */
+/* GRAPHITE MONO — Rofi Theme                                */
+/* Minimal dark monochrome launcher                          */
+/* ========================================================= */
+
+* {
+    bg:             #181818;
+    bg-alt:         #222222;
+    fg:             #d9d9d9;
+    fg-dim:         #8c8c8c;
+    accent:         #d9d9d9;
+    urgent:         #ff6578;
+    border-clr:     #383838;
+    selected:       #333333;
+
+    background-color:   transparent;
+    text-color:         @fg;
+    margin:             0;
+    padding:            0;
+    spacing:            0;
+}
+
+window {
+    width:              520px;
+    background-color:   @bg;
+    border:             1px solid;
+    border-color:       @border-clr;
+    border-radius:      10px;
+    padding:            0;
+}
+
+mainbox {
+    children:           [ inputbar, listview ];
+    spacing:            0;
+}
+
+inputbar {
+    background-color:   @bg-alt;
+    padding:            14px 16px;
+    spacing:            10px;
+    children:           [ prompt, entry ];
+    border:             0 0 1px 0;
+    border-color:       @border-clr;
+}
+
+prompt {
+    text-color:         @accent;
+    font:               "JetBrainsMono Nerd Font 13";
+}
+
+entry {
+    placeholder:        "Search...";
+    placeholder-color:  @fg-dim;
+    text-color:         @fg;
+    cursor:             text;
+}
+
+listview {
+    lines:              8;
+    columns:            1;
+    fixed-height:       false;
+    padding:            6px 0;
+    scrollbar:          false;
+    cycle:              true;
+}
+
+element {
+    padding:            10px 16px;
+    spacing:            12px;
+    cursor:             pointer;
+}
+
+element normal.normal {
+    background-color:   transparent;
+    text-color:         @fg;
+}
+
+element normal.urgent {
+    text-color:         @urgent;
+}
+
+element normal.active {
+    text-color:         @accent;
+}
+
+element selected.normal {
+    background-color:   @selected;
+    text-color:         #ffffff;
+    border:             0 0 0 3px;
+    border-color:       @accent;
+}
+
+element selected.urgent {
+    background-color:   @urgent;
+    text-color:         @bg;
+}
+
+element selected.active {
+    background-color:   @selected;
+    text-color:         #ffffff;
+}
+
+element alternate.normal {
+    background-color:   transparent;
+    text-color:         @fg;
+}
+
+element-icon {
+    size:               22px;
+    cursor:             inherit;
+}
+
+element-text {
+    cursor:             inherit;
+    vertical-align:     0.5;
+    highlight:          bold #ffffff;
+}
+
+/* Message / Error */
+message {
+    padding:            12px 16px;
+    border:             0 0 1px 0;
+    border-color:       @border-clr;
+}
+
+textbox {
+    text-color:         @fg-dim;
+}
